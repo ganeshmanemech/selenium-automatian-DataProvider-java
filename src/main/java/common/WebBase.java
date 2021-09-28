@@ -16,19 +16,29 @@ public class WebBase {
 
 	@DataProvider(name = "DataCSVLogin")
 	public String[][] getLoginCSVData() throws IOException {
-		String filename = "C:\\Users\\gsm\\eclipse-workspace\\JavaTrainingSession\\FiletoRead\\LoginData.csv";
-		File file = new File(filename);
-		FileReader fr = new FileReader(file);
-		BufferedReader br = new BufferedReader(fr);
-
-		String loginData[][] = new String[3][2];
+		String filename = "C:\\Users\\gsm\\eclipse-workspace\\selenium-automation-framework2\\src\\main\\resources\\LoginData.csv";
+		File file=new File(filename);
+		FileReader fr=new FileReader(file);
+		BufferedReader br=new BufferedReader(fr);
+		int maxrow=0;
+		int maxcolm=0;
 		String line;
-		int i = 0;
-		while ((line = br.readLine()) != null) {
-			String[] data = line.split(",");
-			loginData[i] = data;
+		while( (line=br.readLine()) !=null) {
+			maxrow++;
+			String data[]=line.split(",");
+			maxcolm=data.length;
+			break;
+			}
+		System.out.println(maxrow);
+		System.out.println(maxcolm);
+
+		String[][] logData=new String[6][2];
+		int i=0;
+		while((line=br.readLine()) !=null) {
+			String data[]=line.split(",");
+			logData[i]=data;
 			i++;
 		}
-		return loginData;
+		return logData;
 	}
 }
